@@ -22,13 +22,13 @@ public class ATM {
         Map<Denomination, Integer> withdrawal = new HashMap<>();
         int remain = amount;
         for (Denomination denomination: Denomination.values()) {
-            int notes = dispensers.get(denomination);
-            int notesNeeded = remain / denomination.getValue();
-            int notesDispensed = notes > notesNeeded
-                    ? notesNeeded
-                    : notes;
-            withdrawal.put(denomination, notesDispensed);
-            remain -= denomination.getValue() * notesDispensed;
+            int notes = dispensers.getOrDefault(denomination, 0);
+            if (notes > 0) {
+                int notesNeeded = remain / denomination.getValue();
+                int notesToDispense = Math.min(notes, notesNeeded);
+                withdrawal.put(denomination, notesToDispense);
+                remain -= denomination.getValue() * notesToDispense;
+            }
         }
         if (remain > 0) {
             throw new RuntimeException(String.format("Can not dispense amount %d by dispenser %s", amount, dispensers));

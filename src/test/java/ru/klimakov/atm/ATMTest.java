@@ -61,4 +61,16 @@ public class ATMTest {
         }
         assertEquals(10_000, atm.getBalance());
     }
+
+    @Test
+    public void shouldNotDispenseMoreThanThereIsNotes() {
+        atm.deposit(1, ONE_THOUSAND);
+        atm.deposit(10, FIVE_HUNDREDS);
+        int balanceBefore = atm.getBalance();
+        Map<Denomination, Integer> withdrawal = atm.withdraw(2500);
+        assertEquals(balanceBefore - 2500, atm.getBalance());
+        assertEquals(3, withdrawal.get(FIVE_HUNDREDS).intValue());
+        assertEquals(1, withdrawal.get(ONE_THOUSAND).intValue());
+    }
+
 }
