@@ -11,6 +11,7 @@ public class ATM {
         dispensers.put(denomination, value);
         System.out.println("5555555555");
         System.out.println("555555ввв555");
+        System.out.println("555555ввв555");
     }
 
     public int getBalance() {
