@@ -10,6 +10,7 @@ public class ATM {
         int value = dispensers.getOrDefault(denomination, 0) + notes;
         dispensers.put(denomination, value);
         System.out.println("5555555555");
+        System.out.println("555555ввв555");
     }
 
     public int getBalance() {
