@@ -9,6 +9,7 @@ public class ATM {
     public void deposit(int notes, Denomination denomination) {
         int value = dispensers.getOrDefault(denomination, 0) + notes;
         dispensers.put(denomination, value);
+        System.out.println("5555555555");
     }
 
     public int getBalance() {
